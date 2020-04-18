@@ -1,0 +1,2 @@
+INSERT VALUES(nome)
+INTO ALUNO('João Pedro')
