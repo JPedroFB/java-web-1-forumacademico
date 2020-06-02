@@ -1,2 +1,17 @@
-INSERT VALUES(nome)
-INTO ALUNO('João Pedro')
+INSERT INTO ALUNO(nome)
+VALUES('João Pedro');
+
+INSERT INTO ALUNO(nome)
+VALUES('Gabriella');
+
+INSERT INTO PROFESSOR(nome)
+VALUES('Marcelo');
+
+INSERT INTO PROFESSOR(nome)
+VALUES('Rodrigo');
+
+INSERT INTO PROVA(nome)
+VALUES('Spring');
+
+INSERT INTO PROVA(nome)
+VALUES('SQL');

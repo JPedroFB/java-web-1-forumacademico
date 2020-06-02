@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
+
+<head>
+	<th:block th:insert="~{fragments/imports :: head/link}">
+</head>
+
+<body>
+	<nav th:replace="~{fragments/menu :: menu-lateral}"
+		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+	</nav>
+
+	<!-- Main content -->
+	<div class="main-content" id="panel">
+		<nav th:replace="~{fragments/menu :: menu-topo}"
+			class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+			id="sidenav-main"></nav>
+		<div class="header bg-primary pb-6">
+			<div class="container-fluid">
+				<div class="header-body">
+					<div class="row align-items-center py-4">
+						<div class="col-lg-6 col-7">
+							<h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+							<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+									<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+									<li class="breadcrumb-item"><a href="#">Tables</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Tables</li>
+								</ol>
+							</nav>
+						</div>
+						<div class="col-lg-6 col-5 text-right">
+							<a href="#" class="btn btn-sm btn-neutral">New</a>
+							<a href="#" class="btn btn-sm btn-neutral">Filters</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+	<div class="container-fluid mt--6">
+		<div class="row">
+			<div class="card mx-2" style="width: 18rem;">
+				<img class="card-img-top" src="https://image.freepik.com/free-vector/cartoon-young-profesor-teacher-man-blackboard-teaching-children-school-classroom-vector-illustration_53562-7922.jpg" alt="Card image cap">
+				  <div class="card-body">
+				    <h5 class="card-title">Professor</h5>
+				    <p class="card-text">Gerencie os professor.</p>
+				    <a th:href="@{professor}" class="btn btn-primary">Listar</a>
+				  </div>
+			</div>
+		
+			<div class="card mx-2" style="width: 18rem;">
+				<img class="card-img-top" src="https://image.freepik.com/free-vector/flat-people-going-university-collection_23-2148190293.jpg" alt="Card image cap">
+				  <div class="card-body">
+				    <h5 class="card-title">Alunos</h5>
+				    <p class="card-text">Gerencie os alunos.</p>
+				    <a th:href="@{/aluno}" class="btn btn-primary">Listar</a>
+				  </div>
+			</div>	
+		</div>
+		
+	</div>
+
+	</div>
+
+
+	<th:block th:insert="~{fragments/imports :: body/script}">
+</body>
+
+</html>

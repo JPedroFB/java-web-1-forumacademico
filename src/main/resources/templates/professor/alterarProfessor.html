@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http:www.thymeleaf.org">
+
+<head>
+<th:block th:insert="~{fragments/imports :: head/link}">
+</head>
+
+<body>
+	<nav th:replace="~{fragments/menu :: menu-lateral}"
+		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+		id="sidenav-main"></nav>
+
+	<!-- Main content -->
+	<div class="main-content" id="panel">
+		<nav th:replace="~{fragments/menu :: menu-topo}"
+			class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+			id="sidenav-main"></nav>
+		<div class="header bg-primary pb-6">
+			<div class="container-fluid">
+				<div class="header-body">
+					<div class="row align-items-center py-4">
+						<div class="col-lg-6 col-7">
+							<h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+							<nav aria-label="breadcrumb"
+								class="d-none d-md-inline-block ml-md-4">
+								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+									<li class="breadcrumb-item"><a href="#"><i
+											class="fas fa-home"></i></a></li>
+									<li class="breadcrumb-item"><a href="#">Tables</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Tables</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container-fluid mt--6">
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<!-- Card header -->
+						<div
+							class="card-header border-0 d-flex justify-content-between align-items-center">
+							<h2 class="mb-0">Alterar Professor</h2>
+							<a type="button" class="btn btn-default"
+								th:href="@{~/professor/cadastrar}">Novo Professor</a>
+						</div>
+
+						<div class="card-body">
+							<form class="form-horizontal" th:object="${professor}"
+								th:action="@{~/professor/alterar}" method="POST">
+									<fieldset class="d-none">
+										<div class="form-group">
+											<label>ID</label>
+											<input type="text" class="form-control input-sm"
+												th:field="*{id}" readOnly="readOnly" maxlength="50" />
+										</div>
+									</fieldset>
+									<fieldset>
+										<div class="form-group">
+											<label>NOME</label> <input required type="text"
+												class="form-control input-sm" th:field="*{nome}"
+												autofocus="autofocus" placeholder="Nome"
+												maxlength="255" />
+										</div>
+									</fieldset>
+								<div align="center">	
+									<a th:href="@{~/professor}" class="btn btn-sm">CANCELAR</a>
+									<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<th:block th:insert="~{fragments/imports :: body/script}">
+</body>
+
+</html>

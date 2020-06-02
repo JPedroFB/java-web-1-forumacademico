@@ -1,8 +1,13 @@
 package com.senac.forumAcademico.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Formatter;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,17 +30,17 @@ public class Atividade {
 	
 	private String descricao;
 	
-	private LocalDateTime dataCriacao = LocalDateTime.now();
+	private LocalDate dataCriacao = LocalDate.now();
 	
 	@Enumerated(EnumType.STRING)
 	private StatusAtividade status = StatusAtividade.NAO_RESPONDIDO;
 	
-	@ManyToOne
-	Aluno aluno;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Aluno aluno;
 	
-	@OneToMany
-	Respostas respostas;
-
+	@OneToMany(mappedBy = "atividade")
+	private List<Resposta> respostas;
+	
 	public Long getId() {
 		return id;
 	}
@@ -60,14 +65,6 @@ public class Atividade {
 		this.descricao = descricao;
 	}
 
-	public LocalDateTime getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(LocalDateTime dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
 	public StatusAtividade getStatus() {
 		return status;
 	}
@@ -84,14 +81,21 @@ public class Atividade {
 		this.aluno = aluno;
 	}
 
-	public Respostas getRespostas() {
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public List<Resposta> getRespostas() {
 		return respostas;
 	}
 
-	public void setRespostas(Respostas respostas) {
+	public void setRespostas(List<Resposta> respostas) {
 		this.respostas = respostas;
 	}
-	
 	
 	
 }
