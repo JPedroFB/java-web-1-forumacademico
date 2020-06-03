@@ -67,10 +67,10 @@ public class AvaliacaoController {
 	
 	
 	@SuppressWarnings("finally")
-	@GetMapping("/excluir/{id}")
-	public ModelAndView excluir(@PathVariable("id") Long id) {
+	@GetMapping("/excluir/{alunoProva}")
+	public ModelAndView excluir(@PathVariable("alunoProva") AlunoProva alunoProva) {
 		try{
-			avaliacaoService.excluir(id);
+			avaliacaoService.excluir(alunoProva);
 		}finally {
 			return listar();			
 		}

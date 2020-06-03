@@ -50,16 +50,17 @@
 						<table class="table align-items-center table-flush">
 						  <thead class="thead-light">
 							<tr>
-							  <th scope="col" class="sort" data-sort="name">Avaliacao</th>
+							  
 							  <th scope="col" class="sort" data-sort="budget">Aluno</th>
+							  <th scope="col" class="sort" data-sort="name">Prova</th>
 							  <th scope="col" class="sort" data-sort="status">Conceito</th>
 							  <th scope="col"></th>
 							</tr>
 						  </thead>
 						  <tbody class="list">
 							<tr th:each="avaliacao : ${avaliacoes}">
-							  <td th:text="${avaliacao.alunoProva.prova.nome}"></td>
 							<td th:text="${avaliacao.alunoProva.aluno.nome}"></td>
+							<td th:text="${avaliacao.alunoProva.prova.nome}"></td>
 							<td th:text="${avaliacao.conceito}"></td>
 								
 							  <td class="text-right">
