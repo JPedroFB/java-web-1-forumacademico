@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,10 +17,7 @@ public class Resposta {
 	String descricao = "Não respondido";
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	Atividade atividade;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	Professor professor;
+	Pergunta pergunta;
 
 	public Long getId() {
 		return id;
@@ -39,20 +35,12 @@ public class Resposta {
 		this.descricao = descricao;
 	}
 
-	public Atividade getAtividade() {
-		return atividade;
+	public Pergunta getPergunta() {
+		return pergunta;
 	}
 
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
-	}
-
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setPergunta(Pergunta pergunta) {
+		this.pergunta = pergunta;
 	}
 	
 	

@@ -21,7 +21,7 @@ public class AlunoController {
 	AlunoService alunoService;
 	
 	@GetMapping("")
-	public ModelAndView listar() {
+	public ModelAndView lista() {
 		ModelAndView mv = new ModelAndView("aluno/listaAlunos");
 		mv.addObject("alunos", alunoService.listar());
 		return mv;
@@ -35,9 +35,9 @@ public class AlunoController {
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(Aluno aluno) {
+	public String salvar(Aluno aluno) {
 		alunoService.salvar(aluno);
-		return listar();
+		return "redirect:/aluno";
 	}
 	
 	@GetMapping("/alterar/{id}")
@@ -48,19 +48,19 @@ public class AlunoController {
 	}
 	
 	@PostMapping("/alterar")
-	public ModelAndView alterar(Aluno aluno) throws ObjectNotFoundException {
+	public String alterar(Aluno aluno) throws ObjectNotFoundException {
 		alunoService.alterar(aluno);
-		return listar();
+		return "redirect:/aluno";
 	}
 	
 	
 	@SuppressWarnings("finally")
 	@GetMapping("/excluir/{id}")
-	public ModelAndView excluir(@PathVariable("id") Long id) {
+	public String excluir(@PathVariable("id") Long id) {
 		try{
 			alunoService.excluir(id);
 		}finally {
-			return listar();			
+			return "redirect:/aluno";			
 		}
 	}
 	

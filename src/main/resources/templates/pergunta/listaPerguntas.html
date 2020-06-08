@@ -3,6 +3,7 @@
 	xmlns:th="http:www.thymeleaf.org">
 
 <head>
+<title>ACAD - Pergunta</title>
 <th:block th:insert="~{fragments/imports :: head/link}">
 </head>
 
@@ -21,7 +22,7 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Resposta</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">Perguntas</h6>
 							<nav aria-label="breadcrumb"
 								class="d-none d-md-inline-block ml-md-4">
 								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
@@ -44,9 +45,9 @@
 						<!-- Card header -->
 						<div
 							class="card-header border-0 d-flex justify-content-between align-items-center">
-							<h2 class="mb-0">Respostas</h2>
+							<h2 class="mb-0">Perguntas</h2>
 							<a type="button" class="btn btn-default"
-								th:href="@{/resposta/cadastrar}">Novo Resposta</a>
+								th:href="@{/pergunta/cadastrar}">Novo Pergunta</a>
 						</div>
 
 						<!-- Light table -->
@@ -54,28 +55,36 @@
 							<table class="table align-items-center table-flush">
 								<thead class="thead-light">
 									<tr>
-										<th scope="col" class="sort" data-sort="id">Id</th>
-										<th scope="col" class="sort" data-sort="descricao">PERGUNTA</th>
-										<th scope="col" class="sort" data-sort="resposta">RESPOSTA</th>
+										<th scope="col" class="sort" data-sort="nome">ID</th>
+										<th scope="col" class="sort" data-sort="nome">PROVA</th>
+										<th scope="col" class="sort" data-sort="nome">DESCRIÇÃO</th>
+										<th scope="col" class="sort" data-sort="nome">DATA DE
+											CRIAÇÃO</th>
+										<th scope="col" class="sort" data-sort="nome">STATUS</th>
 										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody class="list">
-									<tr th:each="resposta : ${respostas}">
-										<th width="10px" th:text="${resposta.id}"></th>
-										<td th:text="${resposta.pergunta.descricao}"></td>
-										<td th:text="${resposta.descricao}"></td>
-										<td class="text-right"><a
-											th:href="@{~/resposta/alterar/{idResposta}(idResposta=${resposta.id})}"
-											class="mx-1" data-toggle="tooltip" data-placement="top"
-											title="Editar"> <img th:src="@{~/icons/lapis.svg}"
-												width="20px">
-										</a> <a
-											th:href="@{~/resposta/excluir/{idResposta}(idResposta=${resposta.id})}"
-											class="mx-1 mr-3" data-toggle="tooltip" data-placement="top"
-											title="Remover"> <img th:src="@{~/icons/bin.svg}"
-												width="20px">
-										</a></td>
+									<tr th:each="pergunta : ${perguntas}">
+										<th width="10px" th:text="${pergunta.id}"></th>
+										<td th:text="${pergunta.prova.nome}"></td>
+										<td th:text="${pergunta.descricao}"></td>
+										<td th:text="${pergunta.dataCriacao}"></td>
+										<td th:text="${pergunta.status}"></td>
+										<td class="text-right">
+											<a
+												th:href="@{~/pergunta/alterar/{idPergunta}(idPergunta=${pergunta.id})}"
+												class="mx-1" data-toggle="tooltip" data-placement="top"
+												title="Editar"> <img th:src="@{~/icons/lapis.svg}"
+													width="20px">
+											</a> 
+											<a
+												th:href="@{~/pergunta/excluir/{idPergunta}(idPergunta=${pergunta.id})}"
+												class="mx-1 mr-3" data-toggle="tooltip" data-placement="top"
+												title="Remover"> <img th:src="@{~/icons/bin.svg}"
+													width="20px">
+											</a>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -87,6 +96,10 @@
 		</div>
 
 	</div>
+
+
+
+
 
 
 	<th:block th:insert="~{fragments/imports :: body/script}">

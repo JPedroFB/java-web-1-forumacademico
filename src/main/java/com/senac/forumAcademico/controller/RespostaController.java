@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.senac.forumAcademico.model.Resposta;
-import com.senac.forumAcademico.service.AtividadeService;
+import com.senac.forumAcademico.service.PerguntaService;
 import com.senac.forumAcademico.service.ProfessorService;
 import com.senac.forumAcademico.service.RespostaService;
 
@@ -23,7 +23,7 @@ public class RespostaController {
 	ProfessorService professorService;
 	
 	@Autowired
-	AtividadeService atividadeService;
+	PerguntaService perguntaService;
 	
 	@Autowired
 	RespostaService respostaService;
@@ -40,7 +40,7 @@ public class RespostaController {
 		ModelAndView mv = new ModelAndView("resposta/cadastroResposta");
 		mv.addObject("resposta", new Resposta());
 		mv.addObject("professores", professorService.listar());
-		mv.addObject("atividades", atividadeService.listar());
+		mv.addObject("perguntas", perguntaService.listar());
 		return mv;
 	}
 	
@@ -55,7 +55,7 @@ public class RespostaController {
 		ModelAndView mv = new ModelAndView("resposta/alterarResposta");
 		mv.addObject("resposta", respostaService.buscaPorID(id));	
 		mv.addObject("professores", professorService.listar());
-		mv.addObject("atividades", atividadeService.listar());
+		mv.addObject("perguntas", perguntaService.listar());
 		return mv;
 	}
 	

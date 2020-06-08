@@ -21,14 +21,14 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">Professor</h6>
 							<nav aria-label="breadcrumb"
 								class="d-none d-md-inline-block ml-md-4">
 								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-									<li class="breadcrumb-item"><a href="#"><i
+									<li class="breadcrumb-item"><a th:href="@{~/dashboard}"><i
 											class="fas fa-home"></i></a></li>
-									<li class="breadcrumb-item"><a href="#">Tables</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Tables</li>
+									<li class="breadcrumb-item"><a th:href="@{~/professor}">Lista</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Alterar</li>
 								</ol>
 							</nav>
 						</div>
@@ -47,12 +47,12 @@
 							class="card-header border-0 d-flex justify-content-between align-items-center">
 							<h2 class="mb-0">Alterar Professor</h2>
 							<a type="button" class="btn btn-default"
-								th:href="@{~/professor/cadastrar}">Novo Professor</a>
+								th:href="@{/professor/cadastrar}">Novo Professor</a>
 						</div>
 
 						<div class="card-body">
 							<form class="form-horizontal" th:object="${professor}"
-								th:action="@{~/professor/alterar}" method="POST">
+								th:action="@{/professor/alterar}" method="POST">
 									<fieldset class="d-none">
 										<div class="form-group">
 											<label>ID</label>
@@ -64,12 +64,12 @@
 										<div class="form-group">
 											<label>NOME</label> <input required type="text"
 												class="form-control input-sm" th:field="*{nome}"
-												autofocus="autofocus" placeholder="Nome"
+												autofocus="autofocus" placeholder="Informe o modelo"
 												maxlength="255" />
 										</div>
 									</fieldset>
 								<div align="center">	
-									<a th:href="@{~/professor}" class="btn btn-sm">CANCELAR</a>
+									<a th:href="@{/professor}" class="btn btn-sm">CANCELAR</a>
 									<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
 								</div>
 							</form>

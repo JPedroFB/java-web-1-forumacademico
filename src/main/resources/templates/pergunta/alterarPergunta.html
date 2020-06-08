@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
 
 <head>
-<title>ACAD - Aluno</title>
+	<title>ACAD - Pergunta</title>
 	<th:block th:insert="~{fragments/imports :: head/link}">
 </head>
 
@@ -21,13 +21,13 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Aluno</h6>
+							<h6 class="h2 text-white d-inline-block mb-0">Pergunta</h6>
 							<nav aria-label="breadcrumb"
 								class="d-none d-md-inline-block ml-md-4">
 								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
 									<li class="breadcrumb-item"><a th:href="@{~/dashboard}"><i
 											class="fas fa-home"></i></a></li>
-									<li class="breadcrumb-item"><a th:href="@{~/aluno}">Lista</a></li>
+									<li class="breadcrumb-item"><a th:href="@{~/pergunta}">Lista</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Cadastro</li>
 								</ol>
 							</nav>
@@ -44,25 +44,42 @@
 				<div class="card">
 					<!-- Card header -->
 					<div class="card-header border-0 d-flex justify-content-between align-items-center">
-						<h2 class="mb-0">Cadastar Aluno</h2>
-						<a type="button" class="btn btn-default" th:href="@{/aluno/cadastrar}">Novo Aluno</a>
+						<h2 class="mb-0">Cadastar Pergunta</h2>
+						<a type="button" class="btn btn-default" th:href="@{/pergunta/cadastrar}">Novo Pergunta</a>
 					</div>
 					
 
 					<div class="card-body">
-						<form class="form-horizontal" th:object="${aluno}" th:action="@{/aluno/salvar}"
+						<form class="form-horizontal" th:object="${pergunta}" th:action="@{/pergunta/salvar}"
 						method="POST">
 							<div class="form-group">
-								<fieldset>
-									<div class="form-group">
-										<label>NOME</label>
-										<input required type="text" class="form-control input-sm" th:field="*{nome}"
+									<div class="form-group d-none">
+										<label>ID</label>
+										<input required type="text" class="form-control input-sm" th:field="*{id}"
 										autofocus="autofocus" placeholder="Informe o modelo" maxlength="255"/>
 									</div>
-								</fieldset>
+									<div class="form-group">
+										<label>PROVA</label> 
+										<div th:if="${selecionado == null}">
+											<select class="form-control" th:field="*{prova}">
+												<option 
+												th:each="prova : ${provas}" 
+												th:value="${prova.id}" 
+												th:text="${prova.nome}"
+												th:selected="${selecionado != null && selecionado.id == prova.id}">
+												</option>
+											</select>
+										</div>
+									 </div>
+									<div class="form-group">
+										<label>PERGUNTA</label>
+										<input required type="text" class="form-control input-sm" th:field="*{descricao}"
+										autofocus="autofocus" placeholder="Informe o modelo" maxlength="255"/>
+									</div>
 							</div>
 							<div align="center">	
-								<a th:href="@{/aluno}" class="btn btn-sm">CANCELAR</a>
+								<!--  <a th:href="@{/pergunta}" class="btn btn-sm">CANCELAR</a> -->
+								<button type="submit" onClick="history.go(-1)" class="btn btn-sm">CANCELAR</button>
 								<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
 							</div>
 						</form>

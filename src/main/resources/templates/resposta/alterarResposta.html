@@ -1,65 +1,96 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http:www.thymeleaf.org">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+<th:block th:insert="~{fragments/imports :: head/link}">
+</head>
 
-    <title>Alterar Resposta</title>
-  </head>
-  <body>
+<body>
+	<nav th:replace="~{fragments/menu :: menu-lateral}"
+		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+		id="sidenav-main"></nav>
 
-	<div class="container">
-		<div class="panel-heading my-3" align="center">
-			<strong>ALTERAÇÃO DE RESPOSTA</strong>
-		</div>
-		
-		<div class="panel-body">
-			<form class="form-horizontal p-3" th:object="${resposta}" th:action="@{/resposta/alterar}"
-			method="POST">
-				<div class="form-group">
-					<fieldset>
-						<div class="form-group row d-none">
-							<label>ID</label>
-							<input type="text" class="form-control input-sm" th:field="*{id}"
-							autofocus="autofocus" placeholder="Informe o modelo" maxlength="255"/>
+	<!-- Main content -->
+	<div class="main-content" id="panel">
+		<nav th:replace="~{fragments/menu :: menu-topo}"
+			class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+			id="sidenav-main"></nav>
+		<div class="header bg-primary pb-6">
+			<div class="container-fluid">
+				<div class="header-body">
+					<div class="row align-items-center py-4">
+						<div class="col-lg-6 col-7">
+							<h6 class="h2 text-white d-inline-block mb-0">Resposta</h6>
+							<nav aria-label="breadcrumb"
+								class="d-none d-md-inline-block ml-md-4">
+								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+									<li class="breadcrumb-item"><a th:href="@{~/dashboard}"><i
+											class="fas fa-home"></i></a></li>
+									<li class="breadcrumb-item"><a th:href="@{~/resposta}">Lista</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Alterar</li>
+								</ol>
+							</nav>
 						</div>
-					
-						<div class="form-group row">
-							<label>PROFESSOR</label>
-							<select class="form-control" th:field="*{professor}">
-								<option th:each="professor : ${professores}" th:value="${professor.id}" th:text="${professor.nome}"></option>
-							</select>
-						</div>
-						<div class="form-group row">
-							<label>ATIVIDADE</label>
-							<select class="form-control" th:field="*{atividade}">
-								<option th:each="atividade : ${atividades}" th:value="${atividade.id}" th:text="${atividade.descricao}"></option>
-							</select>
-						</div>
-						<div class="form-group row">
-							<label>RESPOSTA</label>
-							<input type="text" class="form-control input-sm" th:field="*{descricao}"
-							autofocus="autofocus" placeholder="Informe o modelo" maxlength="255"/>
-						</div>
-					</fieldset>
+					</div>
 				</div>
-				<div align="center">
-					<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
-					<a th:href="@{/resposta}" class="btn btn-sm btn-danger">CANCELAR</a>
-				</div>
-			</form>
+			</div>
 		</div>
+
+
+		<div class="container-fluid mt--6">
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<!-- Card header -->
+						<div
+							class="card-header border-0 d-flex justify-content-between align-items-center">
+							<h2 class="mb-0">Alterar Pergunta</h2>
+							<a type="button" class="btn btn-default"
+								th:href="@{/pergunta/cadastrar}">Nova Pergunta</a>
+						</div>
+
+						<div class="card-body">
+							<form class="form-horizontal" th:object="${resposta}"
+								th:action="@{/resposta/salvar}" method="POST">
+								<div class="form-group">
+									<div class="form-group d-none">
+										<label>ID</label> 
+										<input required type="text"
+											class="form-control input-sm" th:field="*{id}"
+											autofocus="autofocus" placeholder="Informe o modelo"
+											maxlength="255" />
+									</div>
+									<div class="form-group">
+										<label>PERGUNTA</label> <select class="form-control"
+											th:field="*{pergunta}">
+											<option th:each="pergunta : ${perguntas}"
+												th:value="${pergunta.id}" th:text="${pergunta.descricao}"></option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>NOME</label> <input required type="text"
+											class="form-control input-sm" th:field="*{descricao}"
+											autofocus="autofocus" placeholder="Informe o modelo"
+											maxlength="255" />
+									</div>
+								</div>
+								<div align="center">
+									<a th:href="@{/resposta}" class="btn btn-sm">CANCELAR</a>
+									<button type="submit" class="btn btn-sm btn-success">SALVAR</button>
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  </body>
+	<th:block th:insert="~{fragments/imports :: body/script}">
+</body>
+
 </html>

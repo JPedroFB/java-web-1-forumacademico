@@ -24,7 +24,7 @@ public class RespostaService {
 	}
 
 	public Resposta salvar(Resposta resposta) {
-		resposta.getAtividade().setStatus(StatusAtividade.RESPONDIDO);
+		resposta.getPergunta().setStatus(StatusAtividade.RESPONDIDO);
 		return respostaRepo.save(resposta);
 	}
 	
@@ -39,9 +39,8 @@ public class RespostaService {
 
 	public Resposta alterar(Resposta respostaAlterado) throws ObjectNotFoundException {
 		Resposta resposta = buscaPorID(respostaAlterado.getId());
-		resposta.setAtividade(respostaAlterado.getAtividade());
+		resposta.setPergunta(respostaAlterado.getPergunta());
 		resposta.setDescricao(respostaAlterado.getDescricao());
-		resposta.setProfessor(respostaAlterado.getProfessor());
 		return salvar(resposta);
 	}
 

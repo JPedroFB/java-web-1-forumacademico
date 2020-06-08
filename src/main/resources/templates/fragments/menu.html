@@ -11,9 +11,9 @@
   <nav th:fragment="menu-lateral" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
-      <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img th:src="@{/img/brand/blue.png}" class="navbar-brand-img" alt="...">
+      <div class="sidenav-header  align-items-center" >
+        <a class="navbar-brand" th:href="@{~/dashboard}">
+          <img th:src="@{/img/brand/logo.png}" class="navbar-brand-img" alt="..." style="max-height: 2.7rem;">
         </a>
       </div>
       <div class="navbar-inner">
@@ -22,7 +22,7 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" th:href="dashboard">
+              <a class="nav-link" th:href="@{~/dashboard}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
@@ -45,8 +45,20 @@
                 <span class="nav-link-text">Perfis</span>
               </a>
             </li>
-           
           </ul>
+          
+          <hr class="my-3">
+          
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{~/resposta}">
+                <i class="ni ni-hat-3 text-primary"></i>
+                <span class="nav-link-text">Responda</span>
+              </a>
+            </li>
+           </ul>
+          
+          
         </div>
       </div>
     </div>
@@ -152,10 +164,10 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" th:src="@{/img/theme/team-4.jpg}">
+                    <img alt="Image placeholder" th:src="@{/img/brand/perfil.jpg}" height="38px">
                   </span>
                   <div class="media-body  ml-2  d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                    <span class="mb-0 text-sm  font-weight-bold">Bjorn Braço de Ferro</span>
                   </div>
                 </div>
               </a>

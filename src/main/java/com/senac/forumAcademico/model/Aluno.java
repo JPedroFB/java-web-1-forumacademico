@@ -21,12 +21,6 @@ public class Aluno implements Serializable {
 	
 	private String nome;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	private Professor professor;
-	
-//	@OneToMany
-//	private List<Atividade> atividades;
-
 	public Long getId() {
 		return id;
 	}
@@ -43,22 +37,4 @@ public class Aluno implements Serializable {
 		this.nome = nome;
 	}
 
-//	public Professor getProfessor() {
-//		return professor;
-//	}
-//
-//	public void setProfessor(Professor professor) {
-//		this.professor = professor;
-//	}
-
-//	public List<Atividade> getAtividades() {
-//		return atividades;
-//	}
-//
-//	public void setAtividades(List<Atividade> atividades) {
-//		this.atividades = atividades;
-//	}
-	
-	
-	
 }

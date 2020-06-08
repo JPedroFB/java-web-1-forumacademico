@@ -1,10 +1,14 @@
 package com.senac.forumAcademico.model;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 @Entity
-public class Avaliacao {
+public class Avaliacao implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private AlunoProva alunoProva;

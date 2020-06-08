@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
 
 <head>
+<title>ACAD - Prova</title>
 	<th:block th:insert="~{fragments/imports :: head/link}">
 </head>
 
@@ -20,18 +21,16 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
-							<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+							<h6 class="h2 text-white d-inline-block mb-0">Prova</h6>
+							<nav aria-label="breadcrumb"
+								class="d-none d-md-inline-block ml-md-4">
 								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-									<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-									<li class="breadcrumb-item"><a href="#">Tables</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Tables</li>
+									<li class="breadcrumb-item"><a th:href="@{~/dashboard}"><i
+											class="fas fa-home"></i></a></li>
+									<li class="breadcrumb-item"><a th:href="@{~/prova}">Lista</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Cadastro</li>
 								</ol>
 							</nav>
-						</div>
-						<div class="col-lg-6 col-5 text-right">
-							<a href="#" class="btn btn-sm btn-neutral">New</a>
-							<a href="#" class="btn btn-sm btn-neutral">Filters</a>
 						</div>
 					</div>
 				</div>
@@ -46,7 +45,7 @@
 					<!-- Card header -->
 					<div class="card-header border-0 d-flex justify-content-between align-items-center">
 						<h2 class="mb-0">Cadastar Prova</h2>
-						<a type="button" class="btn btn-default" th:href="@{/provas/cadastrar}">Novo Prova</a>
+						<a type="button" class="btn btn-default" th:href="@{/provas/cadastrar}">Nova Prova</a>
 					</div>
 					
 

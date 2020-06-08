@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http:www.thymeleaf.org">
 
 <head>
-	<th:block th:insert="~{fragments/imports :: head/link}">
+<title>ACAD - Prova</title>
+<th:block th:insert="~{fragments/imports :: head/link}">
 </head>
 
 <body>
 	<nav th:replace="~{fragments/menu :: menu-lateral}"
-		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
-	</nav>
+		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+		id="sidenav-main"></nav>
 
 	<!-- Main content -->
 	<div class="main-content" id="panel">
@@ -20,12 +22,13 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
-							<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+							<h6 class="h2 text-white d-inline-block mb-0">Prova</h6>
+							<nav aria-label="breadcrumb"
+								class="d-none d-md-inline-block ml-md-4">
 								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-									<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-									<li class="breadcrumb-item"><a href="#">Tables</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Tables</li>
+									<li class="breadcrumb-item"><a th:href="@{~/dashboard}"><i
+											class="fas fa-home"></i></a></li>
+									<li class="breadcrumb-item active" aria-current="page">Lista</li>
 								</ol>
 							</nav>
 						</div>
@@ -33,49 +36,63 @@
 				</div>
 			</div>
 		</div>
-	
 
-	<div class="container-fluid mt--6">
-		<div class="row">
-			<div class="col">
-				<div class="card">
-					<!-- Card header -->
-					<div class="card-header border-0 d-flex justify-content-between align-items-center">
-						<h2 class="mb-0">Provas</h2>
-						<a type="button" class="btn btn-default" th:href="@{~/provas/cadastrar}">Novo Prova</a>
+
+		<div class="container-fluid mt--6">
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<!-- Card header -->
+						<div
+							class="card-header border-0 d-flex justify-content-between align-items-center">
+							<h2 class="mb-0">Provas</h2>
+							<div>
+								<a type="button" class="btn btn-outline-default"
+									th:href="@{~/pergunta}">Perguntas</a> <a type="button"
+									class="btn btn-default" th:href="@{~/provas/cadastrar}">Nova
+									Prova</a>
+							</div>
+						</div>
+
+						<!-- Light table -->
+						<div class="table-responsive">
+							<table class="table align-items-center table-flush">
+								<thead class="thead-light">
+									<tr>
+										<th scope="col" class="sort" data-sort="nome">Id</th>
+										<th scope="col" class="sort" data-sort="nome">Nome</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody class="list">
+									<tr th:each="prova : ${provas}">
+										<th width="10px" th:text="${prova.id}"></th>
+										<td th:text="${prova.nome}"></td>
+										<td class="text-right"><a
+											th:href="@{~/pergunta/cadastrar?prova={idProva}(idProva=${prova.id})}"
+											class="mx-1" href="#" data-toggle="tooltip"
+											data-placement="top" title="Cadastrar perguntas"> <img
+												th:src="@{~/icons/pergunta.svg}" width="20px">
+										</a> <a
+											th:href="@{~/provas/alterar/{idProva}(idProva=${prova.id})}"
+											class="mx-1" href="#" data-toggle="tooltip"
+											data-placement="top" title="Editar"> <img
+												th:src="@{~/icons/lapis.svg}" width="20px">
+										</a> <a
+											th:href="@{~/provas/excluir/{idProva}(idProva=${prova.id})}"
+											class="mx-1 mr-3" href="#" data-toggle="tooltip"
+											data-placement="top" title="Remover"> <img
+												th:src="@{~/icons/bin.svg}" width="20px">
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
 					</div>
-
-					 <!-- Light table -->
-					 <div class="table-responsive">
-						<table class="table align-items-center table-flush">
-						  <thead class="thead-light">
-							<tr>
-							<th scope="col" class="sort" data-sort="nome">Id</th>
-							  <th scope="col" class="sort" data-sort="nome">Nome</th>
-							  <th scope="col"></th>
-							</tr>
-						  </thead>
-						  <tbody class="list">
-							<tr th:each="prova : ${provas}">
-							  <th width="10px" th:text="${prova.id}"></th>
-							  <td th:text="${prova.nome}"></td>
-							  <td class="text-right">
-							    <a th:href="@{~/provas/alterar/{idProva}(idProva=${prova.id})}" class="mx-1" href="#" data-toggle="tooltip" data-placement="top" title="Editar">
-							    	<img th:src="@{~/icons/lapis.svg}" width="20px">
-							    </a>
-								<a th:href="@{~/provas/excluir/{idProva}(idProva=${prova.id})}" class="mx-1 mr-3" href="#" data-toggle="tooltip" data-placement="top" title="Remover">
-									<img th:src="@{~/icons/bin.svg}" width="20px">
-								</a>
-							  </td>
-							</tr>
-						  </tbody>
-						</table>
-					  </div>
-
 				</div>
 			</div>
 		</div>
-	</div>
 
 	</div>
 

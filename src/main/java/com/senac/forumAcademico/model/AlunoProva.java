@@ -8,9 +8,6 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class AlunoProva implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne

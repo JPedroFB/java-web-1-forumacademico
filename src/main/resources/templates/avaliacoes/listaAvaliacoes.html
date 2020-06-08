@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http:www.thymeleaf.org">
 
 <head>
+<title>ACAD - Avaliações</title>
 	<th:block th:insert="~{fragments/imports :: head/link}">
 </head>
 
@@ -20,12 +21,13 @@
 				<div class="header-body">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6 col-7">
-							<h6 class="h2 text-white d-inline-block mb-0">Tables</h6>
-							<nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+							<h6 class="h2 text-white d-inline-block mb-0">Avaliação</h6>
+							<nav aria-label="breadcrumb"
+								class="d-none d-md-inline-block ml-md-4">
 								<ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-									<li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-									<li class="breadcrumb-item"><a href="#">Tables</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Tables</li>
+									<li class="breadcrumb-item"><a th:href="@{~/dashboard}"><i
+											class="fas fa-home"></i></a></li>
+									<li class="breadcrumb-item active" aria-current="page">Lista</li>
 								</ol>
 							</nav>
 						</div>
@@ -57,7 +59,7 @@
 							  <th scope="col"></th>
 							</tr>
 						  </thead>
-						  <tbody class="list">
+						<!--  <tbody class="list">
 							<tr th:each="avaliacao : ${avaliacoes}">
 							<td th:text="${avaliacao.alunoProva.aluno.nome}"></td>
 							<td th:text="${avaliacao.alunoProva.prova.nome}"></td>
@@ -72,6 +74,21 @@
 								</a>
 							  </td>
 							  
+							</tr>
+						  </tbody>-->
+						  <tbody class="list">
+							<tr th:each="avaliacao : ${avaliacoes}">
+							  <td th:text="${avaliacao.alunoProva.aluno.nome}"></td>
+							  <td th:text="${avaliacao.alunoProva.prova.nome}"></td>
+							  <td th:text="${avaliacao.conceito}"></td>
+						<!--	  <td class="text-right">
+							    <a th:href="@{~/professor/alterar/{idProfessor}(idProfessor=${professor.id})}" class="mx-1" data-toggle="tooltip" data-placement="top" title="Editar">
+							    	<img th:src="@{~/icons/lapis.svg}" width="20px">
+							    </a>
+								<a th:href="@{~/professor/excluir/{idProfessor}(idProfessor=${professor.id})}" class="mx-1 mr-3" data-toggle="tooltip" data-placement="top" title="Remover">
+									<img th:src="@{~/icons/bin.svg}" width="20px">
+								</a>
+							  </td> -->
 							</tr>
 						  </tbody>
 						</table>

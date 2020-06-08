@@ -11,7 +11,6 @@ import com.senac.forumAcademico.service.AvaliacaoService;
 import com.senac.forumAcademico.service.ProvaService;
 
 @Controller
-@RequestMapping("")
 public class IndexController {
 
 	@Autowired
@@ -22,6 +21,11 @@ public class IndexController {
 	
 	@Autowired
 	AvaliacaoService avaliacaoService;
+	
+	@GetMapping("")
+	public String redirect() {
+		return "redirect:/dashboard";
+	}
 
 	@GetMapping("/dashboard")
 	public ModelAndView inicio() {

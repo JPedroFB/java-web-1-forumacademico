@@ -1,13 +1,9 @@
 package com.senac.forumAcademico.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.Formatter;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,13 +16,11 @@ import javax.persistence.OneToMany;
 import com.senac.forumAcademico.model.enuns.StatusAtividade;
 
 @Entity
-public class Atividade {
+public class Pergunta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String topico;
 	
 	private String descricao;
 	
@@ -36,9 +30,9 @@ public class Atividade {
 	private StatusAtividade status = StatusAtividade.NAO_RESPONDIDO;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Aluno aluno;
+	private Prova prova;
 	
-	@OneToMany(mappedBy = "atividade")
+	@OneToMany(mappedBy = "pergunta")
 	private List<Resposta> respostas;
 	
 	public Long getId() {
@@ -47,14 +41,6 @@ public class Atividade {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTopico() {
-		return topico;
-	}
-
-	public void setTopico(String topico) {
-		this.topico = topico;
 	}
 
 	public String getDescricao() {
@@ -73,12 +59,13 @@ public class Atividade {
 		this.status = status;
 	}
 
-	public Aluno getAluno() {
-		return aluno;
+
+	public Prova getProva() {
+		return prova;
 	}
 
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
+	public void setProva(Prova prova) {
+		this.prova = prova;
 	}
 
 	public LocalDate getDataCriacao() {
