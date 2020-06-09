@@ -45,9 +45,9 @@ public class RespostaController {
 	}
 	
 	@PostMapping("salvar")
-	public ModelAndView salvar(Resposta resposta) {
+	public String salvar(Resposta resposta) {
 		respostaService.salvar(resposta);
-		return listar();
+		return "redirect:/resposta";
 	}
 	
 	@GetMapping("/alterar/{id}")
@@ -60,18 +60,18 @@ public class RespostaController {
 	}
 	
 	@PostMapping("/alterar")
-	public ModelAndView alterar(Resposta resposta) throws ObjectNotFoundException {
+	public String alterar(Resposta resposta) throws ObjectNotFoundException {
 		respostaService.alterar(resposta);
-		return listar();
+		return "redirect:/resposta";
 	}
 	
 	
 	@GetMapping("/excluir/{id}")
-	public ModelAndView excluir(@PathVariable("id") Long id) {
+	public String excluir(@PathVariable("id") Long id) {
 		try{
 			respostaService.excluir(id);
 		}finally {
-			return listar();			
+			return "redirect:/resposta";			
 		}
 	}
 	

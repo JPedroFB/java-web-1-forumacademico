@@ -35,10 +35,4 @@ public class AvaliacaoService {
 		return avaliacao.orElseThrow(() -> new ObjectNotFoundException("Avaliacao não encontrado. id:" + alunoProva));
 	}
 
-	public Avaliacao alterar(Avaliacao avaliacaoAlterado) throws ObjectNotFoundException {
-		Avaliacao avaliacao = buscaPorID(avaliacaoAlterado.getAlunoProva());
-		avaliacao.setAlunoProva(avaliacaoAlterado.getAlunoProva());
-		avaliacao.setConceito(avaliacaoAlterado.getConceito());
-		return salvar(avaliacao);
-	}	
 }

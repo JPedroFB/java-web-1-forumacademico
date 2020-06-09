@@ -35,11 +35,12 @@ public class PerguntaService {
 		return pergunta.orElseThrow(() -> new ObjectNotFoundException("Pergunta não encontrado. id:" + id));
 	}
 
-//	public Pergunta alterar(Pergunta perguntaAlterado) throws ObjectNotFoundException {
-//		Pergunta pergunta = buscaPorID(perguntaAlterado.getId());
-//		pergunta.setTopico(perguntaAlterado.getTopico());
-//		pergunta.setDescricao(perguntaAlterado.getDescricao());
-//		return salvar(pergunta);
-//	}
+	public Pergunta alterar(Pergunta perguntaAlterado) throws ObjectNotFoundException {
+		Pergunta pergunta = buscaPorID(perguntaAlterado.getId());
+		pergunta.setDescricao(perguntaAlterado.getDescricao());
+		pergunta.setProva(perguntaAlterado.getProva());
+		pergunta.setRespostas(perguntaAlterado.getRespostas());
+		return salvar(pergunta);
+	}
 
 }

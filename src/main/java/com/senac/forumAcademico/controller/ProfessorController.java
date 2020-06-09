@@ -35,9 +35,9 @@ public class ProfessorController {
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(Professor professor) {
+	public String salvar(Professor professor) {
 		professorService.salvar(professor);
-		return listar();
+		return "redirect:/professor";
 	}
 	
 	@GetMapping("/alterar/{id}")
@@ -48,19 +48,19 @@ public class ProfessorController {
 	}
 	
 	@PostMapping("/alterar")
-	public ModelAndView alterar(Professor professor) throws ObjectNotFoundException {
+	public String alterar(Professor professor) throws ObjectNotFoundException {
 		professorService.alterar(professor);
-		return listar();
+		return "redirect:/professor";
 	}
 	
 	
 	@SuppressWarnings("finally")
 	@GetMapping("/excluir/{id}")
-	public ModelAndView excluir(@PathVariable("id") Long id) {
+	public String excluir(@PathVariable("id") Long id) {
 		try{
 			professorService.excluir(id);
 		}finally {
-			return listar();			
+			return "redirect:/professor";			
 		}
 	}
 	

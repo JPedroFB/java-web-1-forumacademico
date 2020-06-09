@@ -1,6 +1,5 @@
 package com.senac.forumAcademico.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +15,7 @@ public class Resposta {
 	
 	String descricao = "Não respondido";
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	Pergunta pergunta;
 
 	public Long getId() {

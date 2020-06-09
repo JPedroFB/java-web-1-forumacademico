@@ -29,10 +29,10 @@ public class Pergunta {
 	@Enumerated(EnumType.STRING)
 	private StatusAtividade status = StatusAtividade.NAO_RESPONDIDO;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Prova prova;
 	
-	@OneToMany(mappedBy = "pergunta")
+	@OneToMany(mappedBy = "pergunta", cascade = CascadeType.ALL)
 	private List<Resposta> respostas;
 	
 	public Long getId() {

@@ -47,32 +47,18 @@ public class AvaliacaoController {
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(Avaliacao avaliacao) {
+	public String salvar(Avaliacao avaliacao) {
 		avaliacaoService.salvar(avaliacao);
-		return listar();
+		return "redirect:/avaliacoes";
 	}
-	
-	@GetMapping("/alterar/{alunoProva}")
-	public ModelAndView editar(@PathVariable("alunoProva")AlunoProva alunoProva) throws ObjectNotFoundException {
-		ModelAndView mv = new ModelAndView("aluno/alterarAvaliacao");
-		mv.addObject("avaliacoes", avaliacaoService.buscaPorID(alunoProva));	
-		return mv;
-	}
-	
-	@PostMapping("/alterar")
-	public ModelAndView alterar(Avaliacao avaliacao) throws ObjectNotFoundException {
-		avaliacaoService.alterar(avaliacao);
-		return listar();
-	}
-	
 	
 	@SuppressWarnings("finally")
 	@GetMapping("/excluir/{alunoProva}")
-	public ModelAndView excluir(@PathVariable("alunoProva") AlunoProva alunoProva) {
+	public String excluir(@PathVariable("alunoProva") AlunoProva alunoProva) {
 		try{
 			avaliacaoService.excluir(alunoProva);
 		}finally {
-			return listar();			
+			return "redirect:/avaliacoes";			
 		}
 	}
  

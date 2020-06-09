@@ -35,9 +35,9 @@ public class ProvaController {
 	}
 	
 	@PostMapping("/salvar")
-	public ModelAndView salvar(Prova prova) {
+	public String salvar(Prova prova) {
 		provaService.salvar(prova);
-		return listar();
+		return "redirect:/provas";
 	}
 	
 	@GetMapping("/alterar/{id}")
@@ -48,19 +48,19 @@ public class ProvaController {
 	}
 	
 	@PostMapping("/alterar")
-	public ModelAndView alterar(Prova prova) throws ObjectNotFoundException {
+	public String alterar(Prova prova) throws ObjectNotFoundException {
 		provaService.alterar(prova);
-		return listar();
+		return "redirect:/provas";
 	}
 	
 	
 	@SuppressWarnings("finally")
 	@GetMapping("/excluir/{id}")
-	public ModelAndView excluir(@PathVariable("id") Long id) {
+	public String excluir(@PathVariable("id") Long id) {
 		try{
 			provaService.excluir(id);
 		}finally {
-			return listar();			
+			return "redirect:/provas";			
 		}
 	}
 	

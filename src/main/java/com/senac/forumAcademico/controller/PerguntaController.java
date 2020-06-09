@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.senac.forumAcademico.model.Aluno;
 import com.senac.forumAcademico.model.Pergunta;
 import com.senac.forumAcademico.service.ProvaService;
 import com.senac.forumAcademico.service.PerguntaService;
@@ -34,7 +35,6 @@ public class PerguntaController {
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView("pergunta/listaPerguntas");
 		mv.addObject("perguntas", perguntaService.listar());
-//		mv.addObject("respostas", respostaService.listar());
 		return mv;
 	}
 	
@@ -63,6 +63,13 @@ public class PerguntaController {
 		mv.addObject("pergunta", perguntaService.buscaPorID(id));	
 		mv.addObject("provas", provaService.listar());
 		return mv;
+	}
+	
+	
+	@PostMapping("/alterar")
+	public String alterar(Pergunta pergunta) throws ObjectNotFoundException {
+		perguntaService.alterar(pergunta);
+		return "redirect:/pergunta";
 	}
 	
 	
