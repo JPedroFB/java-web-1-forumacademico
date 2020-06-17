@@ -1,8 +1,8 @@
-INSERT INTO ALUNO(nome)
-VALUES('João Pedro');
+INSERT INTO ALUNO(nome, email)
+VALUES('João Pedro','jpedro.rj17@gmail.com');
 
-INSERT INTO ALUNO(nome)
-VALUES('Gabriella');
+INSERT INTO ALUNO(nome, email)
+VALUES('Gabriella','gabi@gmail.com');
 
 INSERT INTO PROFESSOR(nome)
 VALUES('Marcelo');

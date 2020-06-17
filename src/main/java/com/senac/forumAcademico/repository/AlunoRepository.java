@@ -7,5 +7,7 @@ import com.senac.forumAcademico.model.Aluno;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long>{
+	
+	Aluno findByEmailAndNome(String email, String nome);
 
 }
