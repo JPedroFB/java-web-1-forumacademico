@@ -4,6 +4,9 @@
 <head>
   <title>ACAD - Dashboard</title>
   <th:block th:insert="~{fragments/imports :: head/link}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta name="keywords" content="dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, argon, argon ui kit, creative tim, html kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit, argon dashboard">
   
 </head>
 
@@ -12,7 +15,11 @@
 <nav th:replace="~{fragments/menu :: menu-lateral}" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
 </nav>
 
-
+<!--nav th:replace="~{fragments/menu_modificado :: menu-lateral-modificado}"
+		class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white"
+		id="sidenav-main">
+		</nav>
+-->
 
   <!-- Main content -->
   <div class="main-content" id="panel">
@@ -20,6 +27,9 @@
   <nav th:replace="~{fragments/menu :: menu-topo}" class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
   </nav>
   
+  <!--nav th:replace="~{fragments/menu_modificado :: menu-topo-modificado}"
+			class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+			</nav-->
   
   
     <!-- Header -->

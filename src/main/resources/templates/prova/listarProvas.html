@@ -56,7 +56,7 @@
 
 						<!-- Light table -->
 						<div class="table-responsive">
-							<table class="table align-items-center table-flush">
+							<table class="table table-flush" id="datatable-basic">
 								<thead class="thead-light">
 									<tr>
 										<th scope="col" class="sort" data-sort="nome">Id</th>
@@ -95,9 +95,11 @@
 		</div>
 
 	</div>
-
-
+	
 	<th:block th:insert="~{fragments/imports :: body/script}">
+	
+		 
+	  
 </body>
 
 </html>

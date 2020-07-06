@@ -30,7 +30,7 @@ public class IndexController {
 	
 	@GetMapping("")
 	public String redirect() {
-		return "redirect:/login";
+		return "redirect:/dashboard";
 	}
 
 	@GetMapping("/dashboard")
@@ -43,22 +43,22 @@ public class IndexController {
 		return mv;
 	}
 	
-	@GetMapping("/login")
-	public ModelAndView logar() {
-		ModelAndView mv = new ModelAndView("examples/login");
-		mv.addObject("usuario", new Aluno());
-		return mv;
+//	@GetMapping("/login")
+//	public ModelAndView logar() {
+//		ModelAndView mv = new ModelAndView("examples/login");
+//		mv.addObject("usuario", new Aluno());
+//		return mv;
+//	
+//	}
 	
-	}
-	
-	@PostMapping("/validar")
-	public String login(Aluno aluno) {
-		boolean validado = loginService.login(aluno);
-		if(validado) {
-			return "redirect:/dashboard";
-		}
-		return "redirect:/login";
-	}
+//	@PostMapping("/validar")
+//	public String login(Aluno aluno) {
+//		boolean validado = loginService.login(aluno);
+//		if(validado) {
+//			return "redirect:/dashboard";
+//		}
+//		return "redirect:/login";
+//	}
 	
 	@GetMapping("/perfis")
 	public ModelAndView perfis() {
