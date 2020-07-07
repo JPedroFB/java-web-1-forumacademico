@@ -2,6 +2,7 @@ package com.senac.forumAcademico.model;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -13,8 +14,7 @@ public class Permissao implements GrantedAuthority{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	
+	@Id @Column(name = "nome_permissao")
 	private String nomePermissao;
 	
 	@ManyToMany(mappedBy = "permissoes")

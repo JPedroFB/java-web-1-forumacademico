@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -23,27 +25,29 @@ public class Usuario implements UserDetails, Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
+	@Id 
 	private String login;
 	private String nomeCompleto;
 	private String senha;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
+	@IndexColumn(name = "INDEX")
 	@JoinTable(
 			name = "usuarios_roles",
 			joinColumns = @JoinColumn(
-					name = "usuario_id", referencedColumnName = "login"),
+					name = "usuario_login", referencedColumnName = "login"),
 					inverseJoinColumns = @JoinColumn(
-					name = "role_id", referencedColumnName = "nameRole"))
+					name = "role_name", referencedColumnName = "nameRole"))
 	private List<Role> roles;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+	@IndexColumn(name = "INDEX")
 	@JoinTable(
-			name = "usuario_permissoes",
+			name = "usuarios_permissoes",
 			joinColumns = @JoinColumn(
-					name = "usuario_id", referencedColumnName = "login"),
+					name = "usuario_login", referencedColumnName = "login"),
 					inverseJoinColumns = @JoinColumn(
-					name = "permissao_id", referencedColumnName = "nomePermissao"))
+					name = "nome_permissao", referencedColumnName = "nome_permissao"))
 	private List<Permissao> permissoes;
 	
 	public String getLogin() {

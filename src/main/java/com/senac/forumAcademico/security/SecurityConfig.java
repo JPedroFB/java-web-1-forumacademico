@@ -18,11 +18,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-//	private static String[] ADMIN_MATCHERS = {"/h2-console/**","/perfis/**"};
-//	private static String[] TEACHER_MATCHERS = {"/provas/**","/avaliacoes/**","/perguntas/**"};
-//	private static String[] STUDENT_MATCHERS = {"/responda/**"};
 	
 	private static String[] PUBLIC_MATCHERS = {"/h2-console/**"};
+	private static String[] ADMIN_MATCHERS = {"/perfis/**"};
+	private static String[] TEACHER_MATCHERS = {"/provas","/avaliacoes/**","/perguntas/**"};
+	private static String[] STUDENT_MATCHERS = {"/responda/**"};
 	
 	@Autowired
 	private CurrentUserDetailsService userDetailsService;
@@ -33,22 +33,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		//Cconfigurações de autoriação 
 		http.csrf().disable().authorizeRequests()
-//		.antMatchers(PUBLIC_MATCHERS).permitAll()
+		
+		
+		
+		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		
 		// Libera a acesso as endpoints
-//		.antMatchers(ADMIN_MATCHERS).permitAll()
-//		.antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
-////		.antMatchers(ADMIN_MATCHERS).hasAnyAuthority("insert")
-//		
-//		.antMatchers(TEACHER_MATCHERS).permitAll()
-//		.antMatchers(TEACHER_MATCHERS).hasRole("TEACHER")
-//		
-//		.antMatchers(STUDENT_MATCHERS).permitAll()
-//		.antMatchers(STUDENT_MATCHERS).hasRole("STUDENT")
+		.antMatchers(HttpMethod.GET,ADMIN_MATCHERS).permitAll()
+		.antMatchers(HttpMethod.GET,ADMIN_MATCHERS).hasRole("ADMIN")
+		.antMatchers(ADMIN_MATCHERS).hasAnyAuthority("insert")
+		
+		.antMatchers(HttpMethod.GET,TEACHER_MATCHERS).permitAll()
+		.antMatchers(HttpMethod.GET,TEACHER_MATCHERS).hasRole("TEACHER")
+		
+		.antMatchers(HttpMethod.GET,STUDENT_MATCHERS).permitAll()
+		.antMatchers(HttpMethod.GET,STUDENT_MATCHERS).hasRole("STUDENT")
 		
 		.anyRequest().authenticated()
+		
+		
 		.and().formLogin().permitAll()
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		
+		http.headers().frameOptions().sameOrigin();
 	}
 
 

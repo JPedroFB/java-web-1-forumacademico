@@ -45,29 +45,29 @@ public class UsuarioInit implements ApplicationListener<ContextRefreshedEvent>{
 		usuarioRepository.save(usuario);
 		
 		
-//		Permissao permitionUser = new Permissao();
-//		permitionUser.setNomePermissao("insert");
-//		permRepository.save(permitionUser);
-//		usuario.setPermissoes(Arrays.asList(permitionUser));
-//		
+		Permissao permitionUser = new Permissao();
+		permitionUser.setNomePermissao("insert");
+		permRepository.save(permitionUser);
+		usuario.setPermissoes(Arrays.asList(permitionUser));
 		
 		
-		Usuario usuario2 = new Usuario();
-		usuario2.setLogin("teacher");
-		usuario2.setNomeCompleto("teacher");
-		usuario2.setSenha(new BCryptPasswordEncoder().encode("123"));
 		
-		Role roleUser = new Role();
-		roleUser.setNameRole("ROLE_TEACHER");
-		roleRepository.save(roleUser);
+		Usuario teacher = new Usuario();
+		teacher.setLogin("teacher");
+		teacher.setNomeCompleto("teacher");
+		teacher.setSenha(new BCryptPasswordEncoder().encode("123"));
 		
-		usuario2.setRoles(Arrays.asList(roleUser));
-		usuarioRepository.save(usuario2);
+		Role roleTeacher = new Role();
+		roleTeacher.setNameRole("ROLE_TEACHER");
+		roleRepository.save(roleTeacher);
+		
+		teacher.setRoles(Arrays.asList(roleTeacher));
+		usuarioRepository.save(teacher);
 		
 		
 		Usuario usuario3 = new Usuario();
-		usuario3.setLogin("teacher");
-		usuario3.setNomeCompleto("teacher");
+		usuario3.setLogin("student");
+		usuario3.setNomeCompleto("student");
 		usuario3.setSenha(new BCryptPasswordEncoder().encode("123"));
 		
 		Role roleStudent = new Role();
