@@ -18,9 +18,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-	private static String[] ADMIN_MATCHERS = {"/h2-console/**","/perfis/**"};
-	private static String[] TEACHER_MATCHERS = {"/provas/**","/avaliacoes/**","/perguntas/**"};
-	private static String[] STUDENT_MATCHERS = {"/responda/**"};
+//	private static String[] ADMIN_MATCHERS = {"/h2-console/**","/perfis/**"};
+//	private static String[] TEACHER_MATCHERS = {"/provas/**","/avaliacoes/**","/perguntas/**"};
+//	private static String[] STUDENT_MATCHERS = {"/responda/**"};
+	
+	private static String[] PUBLIC_MATCHERS = {"/h2-console/**"};
 	
 	@Autowired
 	private CurrentUserDetailsService userDetailsService;
@@ -30,26 +32,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 
 		//Cconfigurações de autoriação 
-		http.authorizeRequests()
+		http.csrf().disable().authorizeRequests()
+//		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		
 		// Libera a acesso as endpoints
-		.antMatchers(ADMIN_MATCHERS).permitAll()
-		.antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
-		.antMatchers(ADMIN_MATCHERS).hasAnyAuthority("insert")
-		
-		.antMatchers(TEACHER_MATCHERS).permitAll()
-		.antMatchers(TEACHER_MATCHERS).hasRole("TEACHER")
-		
-		.antMatchers(STUDENT_MATCHERS).permitAll()
-		.antMatchers(STUDENT_MATCHERS).hasRole("STUDENT")
+//		.antMatchers(ADMIN_MATCHERS).permitAll()
+//		.antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
+////		.antMatchers(ADMIN_MATCHERS).hasAnyAuthority("insert")
+//		
+//		.antMatchers(TEACHER_MATCHERS).permitAll()
+//		.antMatchers(TEACHER_MATCHERS).hasRole("TEACHER")
+//		
+//		.antMatchers(STUDENT_MATCHERS).permitAll()
+//		.antMatchers(STUDENT_MATCHERS).hasRole("STUDENT")
 		
 		.anyRequest().authenticated()
-		
-		
 		.and().formLogin().permitAll()
-		
-		.defaultSuccessUrl("/dashboard").permitAll()
-
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 

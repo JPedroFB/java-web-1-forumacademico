@@ -37,7 +37,7 @@ public class Usuario implements UserDetails, Serializable {
 					name = "role_id", referencedColumnName = "nameRole"))
 	private List<Role> roles;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(
 			name = "usuario_permissoes",
 			joinColumns = @JoinColumn(

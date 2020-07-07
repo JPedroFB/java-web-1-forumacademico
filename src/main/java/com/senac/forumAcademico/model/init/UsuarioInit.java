@@ -45,11 +45,11 @@ public class UsuarioInit implements ApplicationListener<ContextRefreshedEvent>{
 		usuarioRepository.save(usuario);
 		
 		
-		Permissao permitionUser = new Permissao();
-		permitionUser.setNomePermissao("insert");
-		permRepository.save(permitionUser);
-		usuario.setPermissoes(Arrays.asList(permitionUser));
-		
+//		Permissao permitionUser = new Permissao();
+//		permitionUser.setNomePermissao("insert");
+//		permRepository.save(permitionUser);
+//		usuario.setPermissoes(Arrays.asList(permitionUser));
+//		
 		
 		
 		Usuario usuario2 = new Usuario();
