@@ -31,11 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		//Cconfigurações de autoriação 
 		http.csrf().disable().authorizeRequests()
-		
-		
-		
 		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		
 		// Libera a acesso as endpoints
@@ -74,10 +70,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//		auth.inMemoryAuthentication()
-//		.withUser("admin").password(encoder.encode("123")).roles("ADMIN");
-		
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
