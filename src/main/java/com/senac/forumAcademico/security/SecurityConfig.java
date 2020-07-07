@@ -18,8 +18,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-	private static String[] PUBLIC_MATCHERS = {"/h2-console/**"};
-	//private static String[] PUBLIC_MATCHER_GET = {"/dashboard"};
+	private static String[] ADMIN_MATCHERS = {"/h2-console/**","/perfis/**"};
+	private static String[] TEACHER_MATCHERS = {"/provas/**","/avaliacoes/**","/perguntas/**"};
+	private static String[] STUDENT_MATCHERS = {"/responda/**"};
 	
 	@Autowired
 	private CurrentUserDetailsService userDetailsService;
@@ -28,13 +29,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
+		//Cconfigurações de autoriação 
 		http.authorizeRequests()
-		.antMatchers(PUBLIC_MATCHERS).permitAll() // Libera a acesso as endpoints
 		
-		//.antMatchers(HttpMethod.GET,PUBLIC_MATCHER_GET).permitAll()
+		// Libera a acesso as endpoints
+		.antMatchers(ADMIN_MATCHERS).permitAll()
+		.antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
+		.antMatchers(ADMIN_MATCHERS).hasAnyAuthority("insert")
 		
-		.anyRequest().authenticated().and().formLogin().permitAll()
+		.antMatchers(TEACHER_MATCHERS).permitAll()
+		.antMatchers(TEACHER_MATCHERS).hasRole("TEACHER")
 		
+		.antMatchers(STUDENT_MATCHERS).permitAll()
+		.antMatchers(STUDENT_MATCHERS).hasRole("STUDENT")
+		
+		.anyRequest().authenticated()
+		
+		
+		.and().formLogin().permitAll()
+		
+		.defaultSuccessUrl("/dashboard").permitAll()
+
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 

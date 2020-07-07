@@ -3,11 +3,19 @@ package com.senac.forumAcademico.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.IndexColumn;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -20,6 +28,23 @@ public class Usuario implements UserDetails, Serializable {
 	private String nomeCompleto;
 	private String senha;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "usuarios_roles",
+			joinColumns = @JoinColumn(
+					name = "usuario_id", referencedColumnName = "login"),
+					inverseJoinColumns = @JoinColumn(
+					name = "role_id", referencedColumnName = "nameRole"))
+	private List<Role> roles;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "usuario_permissoes",
+			joinColumns = @JoinColumn(
+					name = "usuario_id", referencedColumnName = "login"),
+					inverseJoinColumns = @JoinColumn(
+					name = "permissao_id", referencedColumnName = "nomePermissao"))
+	private List<Permissao> permissoes;
 	
 	public String getLogin() {
 		return login;
@@ -42,8 +67,23 @@ public class Usuario implements UserDetails, Serializable {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return new ArrayList<>();
+		
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		
+		this.permissoes.forEach(p -> {
+			GrantedAuthority authority = new SimpleGrantedAuthority(p.getNomePermissao());
+			authorities.add(authority);
+		});
+		
+		this.roles.forEach(p -> {
+			GrantedAuthority authority = new SimpleGrantedAuthority(p.getNameRole());
+			authorities.add(authority);
+		});
+		
+		
+		return authorities;
 	}
+	
 	@Override
 	public String getPassword() {
 		return this.senha;
@@ -67,6 +107,18 @@ public class Usuario implements UserDetails, Serializable {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
 	}
 	
 	
