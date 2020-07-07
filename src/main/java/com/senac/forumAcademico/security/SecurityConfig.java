@@ -39,21 +39,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		
 		// Libera a acesso as endpoints
-		.antMatchers(HttpMethod.GET,ADMIN_MATCHERS).permitAll()
+		.antMatchers(ADMIN_MATCHERS).permitAll()
 		.antMatchers(HttpMethod.GET,ADMIN_MATCHERS).hasRole("ADMIN")
-		.antMatchers(ADMIN_MATCHERS).hasAnyAuthority("insert")
+		.antMatchers(HttpMethod.POST,ADMIN_MATCHERS).hasRole("ADMIN")
 		
-		.antMatchers(HttpMethod.GET,TEACHER_MATCHERS).permitAll()
+		.antMatchers(TEACHER_MATCHERS).permitAll()
 		.antMatchers(HttpMethod.GET,TEACHER_MATCHERS).hasRole("TEACHER")
+		.antMatchers(HttpMethod.POST,TEACHER_MATCHERS).hasRole("TEACHER")
 		
-		.antMatchers(HttpMethod.GET,STUDENT_MATCHERS).permitAll()
+		.antMatchers(STUDENT_MATCHERS).permitAll()
 		.antMatchers(HttpMethod.GET,STUDENT_MATCHERS).hasRole("STUDENT")
+		.antMatchers(HttpMethod.POST,STUDENT_MATCHERS).hasRole("STUDENT")
 		
 		.anyRequest().authenticated()
 		
+		.and().formLogin()
+		.loginProcessingUrl("/signin")
+		.loginPage("/login").permitAll()
+		.usernameParameter("txtUsername")
+		.passwordParameter("txtPassword")
+		.permitAll()
 		
-		.and().formLogin().permitAll()
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		.and().formLogin().permitAll().defaultSuccessUrl("/dashboard")
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
 		
 		http.headers().frameOptions().sameOrigin();
 	}

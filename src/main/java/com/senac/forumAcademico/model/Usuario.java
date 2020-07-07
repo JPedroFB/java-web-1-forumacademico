@@ -94,7 +94,7 @@ public class Usuario implements UserDetails, Serializable {
 	}
 	@Override
 	public String getUsername() {
-		return this.login;
+		return this.nomeCompleto;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
