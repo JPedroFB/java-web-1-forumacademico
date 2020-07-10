@@ -1,7 +1,8 @@
 package com.senac.forumAcademico.security;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,14 +19,13 @@ public class CurrentUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		Usuario usuario = usuarioRepo.findByLogin(login);
+		Optional<Usuario> usuario = usuarioRepo.findByLogin(login);
 		
-		if(usuario == null) {
-			throw new UsernameNotFoundException("Usuario não existe");
+		if(usuario.isPresent()) {
+			return usuario.get();
 		}
 		
-		return new User(usuario.getUsername(), usuario.getPassword(), true, true, true, true, 
-				usuario.getAuthorities());
+		throw new UsernameNotFoundException("Usuario não existe");
 	}
 	
 	

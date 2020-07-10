@@ -35,17 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(PUBLIC_MATCHERS).permitAll()
 		
 		// Libera a acesso as endpoints
-		.antMatchers(ADMIN_MATCHERS).permitAll()
-		.antMatchers(HttpMethod.GET,ADMIN_MATCHERS).hasRole("ADMIN")
-		.antMatchers(HttpMethod.POST,ADMIN_MATCHERS).hasRole("ADMIN")
-		
-		.antMatchers(TEACHER_MATCHERS).permitAll()
-		.antMatchers(HttpMethod.GET,TEACHER_MATCHERS).hasRole("TEACHER")
-		.antMatchers(HttpMethod.POST,TEACHER_MATCHERS).hasRole("TEACHER")
-		
-		.antMatchers(STUDENT_MATCHERS).permitAll()
-		.antMatchers(HttpMethod.GET,STUDENT_MATCHERS).hasRole("STUDENT")
-		.antMatchers(HttpMethod.POST,STUDENT_MATCHERS).hasRole("STUDENT")
+		.antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
+		.antMatchers(TEACHER_MATCHERS).hasAnyRole("TEACHER","ADMIN")
+		.antMatchers(STUDENT_MATCHERS).hasAnyRole("STUDENT","ADMIN")
 		
 		.anyRequest().authenticated()
 		
@@ -54,10 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginPage("/login").permitAll()
 		.usernameParameter("txtUsername")
 		.passwordParameter("txtPassword")
-		.permitAll()
+//		.permitAll()
 		
-		.and().formLogin().permitAll().defaultSuccessUrl("/dashboard")
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+		.defaultSuccessUrl("/dashboard", true)
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 		
 		http.headers().frameOptions().sameOrigin();
 	}
@@ -72,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
+	 
 	
 	
 	
